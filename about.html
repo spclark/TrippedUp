@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/Logo.png">
+    <title>TrippedUp - About</title>
+  </head>
+  <body>
+    <a href="index.html" class="clickable backButton">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-corner-up-left" width="6vh" height="6vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <path d="M18 18v-6a3 3 0 0 0 -3 -3h-10l5 -5m0 10l-5 -5" />
+      </svg>
+    </a>
+    <h1>About</h1>
+    <div id="about">
+      <div class="aboutSection">
+        <div class="aboutPane" id="howItsMade">
+          <h3>How it Works:</h3>
+          <ol>
+            <li>The user enters two locations, points A and B.</li>
+            <li>The locations are converted from addresses to coordinates using a geocoder.</li>
+            <li>The coordinates are passed to a router, which determines the optimal route to take.</li>
+            <li>Route length (meters) and time by car (seconds) are converted to the user's units of measurement, taking into account the chosen mode of transport.</li>
+            <li>Voila! The route and data is displayed to the user.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="aboutSection">
+        <div id="aboutColumn">
+          <div class="aboutPane" id="acknowledgements">
+            <h3>Acknowledgements:</h3>
+            <ul>
+              <li>The map was made using <a href="https://leafletjs.com/" target="_blank">Leaflet <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="2vh" height="2vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <line x1="10" y1="14" x2="20" y2="4" />
+                <polyline points="15 4 20 4 20 9" />
+              </svg></a> with tiles by <a href="https://www.mapbox.com/" target="_blank">MapBox <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="2vh" height="2vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <line x1="10" y1="14" x2="20" y2="4" />
+                <polyline points="15 4 20 4 20 9" />
+              </svg></a>.</li>
+              <li>Routing was done using the <a href="https://www.liedman.net/leaflet-routing-machine/" target="_blank">Leaflet Routing Machine <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="2vh" height="2vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <line x1="10" y1="14" x2="20" y2="4" />
+                <polyline points="15 4 20 4 20 9" />
+              </svg></a>.</li>
+              <li>Place search and geocoding were done using MapQuest's <a href="https://developer.mapquest.com/documentation/place-search-js/v1.0/" target="_blank">PlaceSearch.js API <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="2vh" height="2vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <line x1="10" y1="14" x2="20" y2="4" />
+                <polyline points="15 4 20 4 20 9" />
+              </svg></a>.</li>
+              <li>All icons are from <a href="https://tablericons.com/" target="_blank">Tabler Icons <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="2vh" height="2vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <line x1="10" y1="14" x2="20" y2="4" />
+                <polyline points="15 4 20 4 20 9" />
+              </svg></a>.</li>
+            </ul>
+          </div>
+          <div class="linkRow">
+            <a href="https://github.com/spclark" target="_blank" class="aboutLinkBox" id="gitHub">
+              <img src="assets/GitHub-Mark-120px-plus.png" alt="GitHub">
+            </a>
+            <a href="http://www.stevenclark.xyz" class="aboutLinkBox" id="personalSite">
+              <img src="assets/computer_explorer_cool-0.png" alt="My Website">
+            </a>
+            <a href="mailto:emailme@stevenclark.xyz" class="aboutLinkBox" id="email">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="14vh" max-width="24vw" height="14vh" max-height="24vw" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <line x1="10" y1="14" x2="21" y2="3" />
+                <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <a href="http://www.stevenclark.xyz" target="_blank">&#169;2020 Steven Clark</a>
+  </footer>
+</html>

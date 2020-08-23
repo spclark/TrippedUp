@@ -1,0 +1,490 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #FCFCFC; /* Subtle, yes. Unnecessary, no. */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar { /* Chrome */
+  display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#navbar, .tab, .unitPane, .unit, .tableTab {
+  user-select: none; /* standard syntax */
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+}
+
+#navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 8vh;
+  width: 8vh;
+  max-width: 50vw;
+  margin: 2%;
+  font-size: 2vh;
+  font-weight: bold;
+  color: #555;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  transition: 0.5s ease;
+  z-index: 2;
+}
+
+.tab {
+  display: flex;
+  height: 8vh;
+  width: 100%;
+  align-items: center;
+  padding: 0 5% 0 5%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background-color: #EEE;
+}
+
+#top {
+  padding: 0%;
+  margin-bottom: 1px;
+  justify-content: center;
+  opacity: 100%;
+}
+
+#top:hover {
+  background-color: white;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.unitPane {
+  visibility: hidden;
+  position: fixed;
+  left: 29vh;
+  height: 0;
+  width: 0;
+  max-width: 50vw;
+  margin: 2%;
+  font-size: 1.5vh;
+  font-weight: bold;
+  color: #555;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  background-color: white;
+  box-shadow: 1.2vh 1.2vh 0px rgba(174,174,174,0.8);
+  transition: height,width 0.5s ease;
+  transition-delay: 0.1s;
+  z-index: 3;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.unitPane::-webkit-scrollbar { /* Chrome */
+  display: none;
+}
+
+#transportPane {
+  top: 8vh;
+}
+
+#timePane {
+  top: 16vh;
+}
+
+#lengthPane {
+  top: 24vh;
+}
+
+.unit {
+  display: flex;
+  height: 6vh;
+  width: 100%;
+  padding: 0 5% 0 5%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.unit:hover {
+  background-color: #EEE;
+  cursor: pointer;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2%;
+  box-sizing: border-box;
+}
+
+#logo {
+  height: auto;
+  width: 50vh;
+  max-width: 90vw;
+}
+
+@media only screen and (max-width: 600px) {
+  #logo {
+    margin-top: 10vh;
+  }
+}
+
+#mapid {
+  height: 75vh;
+  max-height: 125vw;
+  width: 75vh;
+  margin: 1%;
+  border: 0.12vh solid #555;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+#ioPane {
+  height: 75vh;
+  max-height: 150vw;
+  width: 75vh;
+  border: 0.12vh solid #555;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  padding: 0 2% 0 2%;
+  margin: 1%;
+  box-sizing: border-box;
+  background-color: white;
+  text-align: left;
+}
+
+#searchBars {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 2% 0 2% 0;
+  height: 50%;
+  width: 100%;
+}
+
+#searchBars h3 {
+  color: #555;
+  margin: 0 0 1% 0;
+  font-size: 3.25vh;
+}
+
+#place-search-input-1, #place-search-input-2 {
+  font-size: 2.2vh;
+}
+
+#sideBySide {
+  display: flex;
+}
+
+#routeButton {
+  height: 4vh;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5vh;
+  cursor: pointer;
+  border: 0.1vh solid #555;
+  border-radius: 0.5vh;
+  color: white;
+  background-color: #6BD673;
+}
+
+#routeButton:hover {
+  background-color: #72E37A;
+}
+
+#disclaimer {
+  display: inline;
+  color: #999;
+  font-size: 1.8vh;
+  margin-left: 2%;
+}
+
+#tripInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 2% 0 2% 0;
+  border-top: 0.15vh solid #555;
+  box-sizing: border-box;
+  height: 50%;
+  color: #555;
+}
+
+#tripInfo h3 {
+  font-size: 3.25vh;
+  margin: 0;
+  height: 20%;
+}
+
+#summary {
+  font-style: italic;
+  font-size: 2.25vh;
+  visibility: hidden;
+}
+
+#summary p {
+  display: inline-block;
+  margin: 0 0 2% 0;
+}
+
+.fillIn {
+  display: inline;
+  font-weight: bold;
+}
+
+#quip {
+  font-weight: normal;
+}
+
+/* CSS for Auxiliary Pages */
+
+h1 {
+  margin: 2% 2% 6% 2%;
+  text-align: center;
+  font-size: 6.5vh;
+  text-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+}
+
+.backButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 8vh;
+  width: 8vh;
+  margin: 2%;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  transition: transform 1s, box-shadow 1s ease;
+}
+
+.backButton:hover {
+  transform: translateY(-5%);
+  box-shadow: 0.8vh 0.8vh 0px rgba(184, 184, 184, 0.8);
+}
+
+/* Glossary */
+
+#content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableTab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  font-size: 2.5vh;
+  margin: 0 1.5% 1vh 1.5%;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  transition: transform 1s, box-shadow 1s ease;
+}
+
+.tableTab:hover {
+  cursor: pointer;
+  transform: translateY(-5%);
+  box-shadow: 0.8vh 0.8vh 0px rgba(184, 184, 184, 0.8);
+}
+
+table {
+  visibility: hidden;
+  position: absolute;
+  margin: 0 4% 2% 4%;
+  font-size: 2vh;
+}
+
+table h4 {
+  font-size: 3vh;
+  margin: 2% 0 0 0;
+}
+
+table h5 {
+  font-size: 1.75vh;
+  font-weight: lighter;
+  font-style: italic;
+  margin: 1vh 0 3vh 0;
+  color: #555;
+}
+
+table a:hover {
+  color: #75A4E9;
+}
+
+td {
+  width: 50%;
+  border-bottom: 0.1vh solid #CCC;
+  vertical-align: top;
+  padding: 0 2% 1.5vh 0;
+}
+
+tr {
+  display: flex;
+}
+
+#transportTable {
+  visibility: visible;
+  position: static;
+}
+
+/* About Page */
+
+#about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 2%;
+}
+
+#about a:hover {
+  color: #75A4E9;
+}
+
+#about ul a:hover svg {
+  stroke: #75A4E9;
+}
+
+#about ul, ol {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  margin-left: 5%;
+  font-size: 2.25vh;
+  box-sizing: border-box;
+}
+
+#about li {
+  margin-bottom: 2%;
+}
+
+#about h3 {
+  margin-left: 3%;
+  font-size: 3.5vh;
+}
+
+.aboutSection {
+  height: 60vh;
+  margin: 2%;
+}
+
+.aboutPane {
+  width: 75vh;
+  max-width: 99vw;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  box-sizing: border-box;
+  background-color: white;
+  padding: 1%;
+  height: 100%;
+}
+
+#aboutColumn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.linkRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.aboutLinkBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  max-height: 30vw;
+  width: 20vh;
+  max-width: 30vw;
+  padding: 2%;
+  margin-top: 4%;
+  box-sizing: border-box;
+  border: 0.1vh solid #555;
+  border-radius: 2vh;
+  box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
+  transition: transform 1s, box-shadow 1s ease;
+  background-color: white;
+}
+
+.aboutLinkBox:hover {
+  transform: translateY(-5%);
+  box-shadow: 0.8vh 0.8vh 0px rgba(184, 184, 184, 0.8);
+}
+
+#gitHub {
+  margin-left: 0;
+}
+
+#email {
+  margin-right: 0;
+}
+
+#gitHub img {
+  height: 14vh;
+  max-height: 24vw;
+  width: 14vh;
+  max-width: 24vw;
+}
+
+#personalSite img {
+  height: 13vh;
+  max-height: 23vw;
+  width: auto;
+}
+
+/* Footer */
+
+footer {
+  margin: 2% 0 1% 0;
+  font-size: 2.25vh;
+  text-align: center;
+  color: #999;
+}
+
+footer a:hover {
+  color: #555;
+}

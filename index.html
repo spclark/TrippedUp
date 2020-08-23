@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="TrippedUp, Measure, Trip, Up, Scale, Unit, Maps, Steven, Clark, Quantify">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/scripts.js" defer></script>
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""></script>
+    <!-- Leaflet Routing Machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!-- MapQuest PlaceSearch.js -->
+    <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/Logo.png">
+    <title>TrippedUp</title>
+  </head>
+  <body>
+    <div id="navBar">
+      <div class="tab" id="top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="clickable icon icon-tabler icon-tabler-align-justified" onclick="openNav()" width="6vh" height="6vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </div>
+      <div class="tab expanding" onmouseover="expand(document.getElementById('transportPane'))" onmouseout="resetPanes()">
+        Mode of Transport
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#999" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+      </div>
+      <div class="tab expanding" onmouseover="expand(document.getElementById('timePane'))" onmouseout="resetPanes()">
+        Time
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#999" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+      </div>
+      <div class="tab expanding" onmouseover="expand(document.getElementById('lengthPane'))" onmouseout="resetPanes()">
+        Distance
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#999" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+      </div>
+      <a href="glossary.html" class="tab">Glossary</a>
+      <a href="about.html" class="tab link">About</a>
+    </div>
+    <div class="unitPane" id="transportPane" onmouseover="expand(document.getElementById('transportPane'))" onmouseout="resetPanes()">
+      <div class="unit" onclick="checkBox(document.getElementById('randomTransport'), 'transport')">Random
+        <div id="randomTransport"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-check" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M9 12l2 2l4 -4" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('bear'), 'transport')">Bear Crawl
+        <div id="bear"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('firebolt'), 'transport')">Broomstick
+        <div id="firebolt"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('hangGlider'), 'transport')">Hang Glider
+        <div id="hangGlider"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('sickAF'), 'transport')">Heelys
+        <div id="sickAF"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('horse'), 'transport')">Horseback
+        <div id="horse"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('heehee'), 'transport')">Moonwalk
+        <div id="heehee"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('boing'), 'transport')">Pogo Stick
+        <div id="boing"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('skate4'), 'transport')">Skateboard
+        <div id="skate4"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('abra'), 'transport')">Teleportation
+        <div id="abra"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('unicycle'), 'transport')">Unicycle
+        <div id="unicycle"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+    </div>
+    <div class="unitPane" id="timePane" onmouseover="expand(document.getElementById('timePane'))" onmouseout="resetPanes()">
+      <div class="unit" onclick="checkBox(document.getElementById('randomTime'), 'time')">Random
+        <div id="randomTime"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-check" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M9 12l2 2l4 -4" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('popcorn'), 'time')">Bags of Popcorn
+        <div id="popcorn"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('dogYear'), 'time')">Dog Years
+        <div id="dogYear"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('lotr'), 'time')">Lord of the Rings Trilogies
+        <div id="lotr"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('martian'), 'time')">Martian Hours
+        <div id="martian"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('millenia'), 'time')">Millennia
+        <div id="millenia"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('seconds'), 'time')">Seconds
+        <div id="seconds"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('slapBass'), 'time')">Seinfeld Episodes
+        <div id="slapBass"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('fusRoDah'), 'time')">Skyrim Playthroughs
+        <div id="fusRoDah"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+    </div>
+    <div class="unitPane" id="lengthPane" onmouseover="expand(document.getElementById('lengthPane'))" onmouseout="resetPanes()">
+      <div class="unit" onclick="checkBox(document.getElementById('randomLength'), 'length')">Random
+        <div id="randomLength"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-check" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M9 12l2 2l4 -4" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('boeing'), 'length')">Boeing 747s
+        <div id="boeing"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('burjKhalifa'), 'length')">Burj Khalifas
+        <div id="burjKhalifa"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('deathStar'), 'length')">Death Stars
+        <div id="deathStar"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('eiffel'), 'length')">Eiffel Towers
+        <div id="eiffel"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('football'), 'length')">Football Fields
+        <div id="football"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('furlong'), 'length')">Furlongs
+        <div id="furlong"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('yeezy'), 'length')">Kanyes
+        <div id="yeezy"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('league'), 'length')">Leagues
+        <div id="league"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('lightyear'), 'length')">Light-years
+        <div id="lightyear"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('rhodeIsland'), 'length')">Rhode Islands
+        <div id="rhodeIsland"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('bigRig'), 'length')">Semi-Trucks
+        <div id="bigRig"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('smoot'), 'length')">Smoots
+        <div id="smoot"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('subway1'), 'length')">$5 Footlongs (pre-2013)
+        <div id="subway1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+      <div class="unit" onclick="checkBox(document.getElementById('subway2'), 'length')">$5 Footlongs (post-2013)
+        <div id="subway2"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="4vh" height="4vh" viewBox="0 0 24 24" stroke-width="1.5" stroke="#555555" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/><rect x="4" y="4" width="16" height="16" rx="2" />
+        </svg></div>
+      </div>
+    </div>
+    <div class="centered"><img id="logo" src="assets/FullLogo.png" alt="TrippedUp"></div>
+    <div class="centered">
+      <div id="mapid"></div>
+      <div id="ioPane">
+        <div id="searchBars">
+          <div class="searchBarGrouping">
+            <h3>Choose a point A:</h3>
+            <input type="search" id="place-search-input-1" placeholder="Start Searching..." style="height: 6vh; border: 0.1vh solid #555;"/>
+          </div>
+          <div class="searchBarGrouping">
+            <h3>Choose a point B:</h3>
+            <input type="search" id="place-search-input-2" placeholder="Start Searching..." style="height: 6vh; border: 0.1vh solid #555;"/>
+          </div>
+          <div id="sideBySide">
+            <div id="routeButton" onclick="createRoute()">Route!</div><p id="disclaimer">(It might take a second)</p>
+          </div>
+        </div>
+        <div id="tripInfo">
+          <h3>Your Trip:</h3>
+          <div id="summary">
+            It will take you <p class="fillIn" id="time">N/A</p><br>to travel a distance of <p class="fillIn" id="distance">N/A</p><br>by <p class="fillIn" id="transport">N/A</p>! <p class="fillIn" id="quip"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <a href="http://www.stevenclark.xyz" target="_blank">&#169;2020 Steven Clark</a>
+  </footer>
+</html>
