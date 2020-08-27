@@ -56,7 +56,7 @@ function expand(pane) {
   openPanes.push(pane);
   pane.style.height = '48vh';
   pane.style.width = '30vh';
-  if (0.3*screen.height > 0.5*screen.width) {
+  if (0.3*window.innerHeight > 0.5*window.innerWidth) {
     pane.style.left = '48vw';
   }
   pane.style.visibility = 'visible';
@@ -107,7 +107,7 @@ var dogYear = new unitOfTime('dogYear', 'Dog Years', 1314000);
 var lotr = new unitOfTime('lotr', 'Lord of the Rings Trilogies', 681);
 var martian = new unitOfTime('martian', 'Martian Hours', 61.62);
 var millenia = new unitOfTime('millenia', 'Millenia', 5.256e+8);
-var seconds = new unitOfTime('seconds', 'Seconds', 0.017);
+var seconds = new unitOfTime('seconds', 'Seconds', 0.01666667);
 var slapBass = new unitOfTime('slapBass', 'Episodes of Seinfeld', 22);
 var fusRoDah = new unitOfTime('fusRoDah', 'Playthroughs of Skyrim', 2203);
 bigOlContainer.timeList.push(randomTime, popcorn, dogYear, lotr, martian, millenia, seconds, slapBass, fusRoDah);

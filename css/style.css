@@ -368,10 +368,8 @@ tr {
 #about {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-  padding: 2%;
+  min-height: 100%;
 }
 
 #about a:hover {
@@ -403,11 +401,12 @@ tr {
 .aboutSection {
   height: 60vh;
   margin: 2%;
+  flex-wrap: wrap;
 }
 
 .aboutPane {
   width: 75vh;
-  max-width: 99vw;
+  max-width: 96vw;
   border: 0.1vh solid #555;
   border-radius: 2vh;
   box-shadow: 0.6vh 0.6vh 0px rgba(204,204,204,0.8);
@@ -418,8 +417,7 @@ tr {
 }
 
 #aboutColumn {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -430,6 +428,7 @@ tr {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 4%;
 }
 
 .aboutLinkBox {
@@ -441,7 +440,6 @@ tr {
   width: 20vh;
   max-width: 30vw;
   padding: 2%;
-  margin-top: 4%;
   box-sizing: border-box;
   border: 0.1vh solid #555;
   border-radius: 2vh;

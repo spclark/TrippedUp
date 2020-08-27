@@ -6,7 +6,7 @@ The website can be found [here](https://stevenclark.xyz/trippedup)
 
 ## Author
 
-* **Steven Clark** - *Initial work* - [spclark](https://github.com/spclark)
+* **Steven Clark** - [spclark](https://github.com/spclark)
 
 ## License
 
